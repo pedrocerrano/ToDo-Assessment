@@ -9,13 +9,13 @@ import Foundation
 
 class List: Codable {
     let listName: String
-    var list: [Item]
+    var listItems: [Item]
     var listIsCompleted: Bool
     let id: UUID
     
-    init(listName: String, list: [Item] = [], listIsCompleted: Bool = false, id: UUID = UUID()) {
+    init(listName: String, listItems: [Item] = [], listIsCompleted: Bool = false, id: UUID = UUID()) {
         self.listName = listName
-        self.list = list
+        self.listItems = listItems
         self.listIsCompleted = listIsCompleted
         self.id = id
     }

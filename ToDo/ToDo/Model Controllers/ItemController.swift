@@ -12,7 +12,7 @@ class ItemController {
     //MARK: - CRUD FUNCTIONS
     static func createItem(newItemName: String, lists: List) {
         let newItem = Item(itemName: newItemName)
-        lists.list.append(newItem)
+        lists.listItems.append(newItem)
         
         ListController.sharedInstance.saveLists()
     } //: CREATE

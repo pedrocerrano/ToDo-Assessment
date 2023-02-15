@@ -17,7 +17,7 @@ class ListController {
     }
     
     //MARK: - CRUD FUNCTIONS
-    func createList(name: String, items: [Item] = []) {
+    func createList(name: String, listItems: [Item] = []) {
         let newList = List(listName: name)
         lists.append(newList)
         

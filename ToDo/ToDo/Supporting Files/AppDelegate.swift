@@ -13,7 +13,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        //MARK: - MOCK DATA
+//        let list1 = List(listName: "Grocery Shop", listItems: [Item(itemName: "Buy Egss"), Item(itemName: "Buy Milk"), Item(itemName: "Buy Bread")])
+//        let list2 = List(listName: "Make Dinner", listItems: [Item(itemName: "Cook Pizza")])
+//        let list3 = List(listName: "Pack for Vatcation")
+//        
+//        ListController.sharedInstance.lists.append(contentsOf: [list1, list2, list3])
+        
         return true
     }
 
