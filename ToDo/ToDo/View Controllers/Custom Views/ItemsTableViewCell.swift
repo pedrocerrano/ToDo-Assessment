@@ -15,12 +15,21 @@ class ItemsTableViewCell: UITableViewCell {
     
     
     //MARK: - PROPERTIES
-    
+    var item: Item? {
+        didSet {
+            updateItemCellViews()
+        } //: PROPERTY OBSERVER
+    } //: COMPUTED
     
     
     //MARK: - HELPER FUNCTIONS
     func updateItemCellViews() {
+        guard let item = item else { return }
+        itemNameLabel.text = item.itemName
         
+        let imageName   = item.itemIsCompleted ? "checkmark.square.fill" : "checkmark.square"
+        let image       = UIImage(systemName: imageName)
+        itemIsCheckedButton.setImage(image, for: .normal)
     } //: UPDATE ITEMS VIEWS
     
     

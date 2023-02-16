@@ -51,7 +51,14 @@ class ListsTableViewController: UITableViewController {
 
     // MARK: - NAVIGATION
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        if segue.identifier == "toItemsTableVC" {
+            if let index = tableView.indexPathForSelectedRow {
+                if let destinationVC = segue.destination as? ItemsTableViewController {
+                    let listSender = ListController.sharedInstance.lists[index.row]
+                    destinationVC.listReceiver = listSender
+                } //: DESTINATION
+            } //: INDEX
+        } //: IDENTIFIER
     } //: SEGUE
 
 } //: CLASS

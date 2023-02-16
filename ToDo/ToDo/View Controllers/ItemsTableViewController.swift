@@ -44,19 +44,23 @@ class ItemsTableViewController: UITableViewController {
     
     //MARK: - HELPER FUNCTIONS
     func updateViews() {
-        
+// This will be for the text field
     } //: UPDATE VIEWS
     
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return listReceiver?.listItems.count ?? 0
     } //: # ROWS
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath)
-
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as? ItemsTableViewCell,
+              let listReceiver = listReceiver else { return UITableViewCell() }
+        cell.selectionStyle = .none
+        
+        let itemReceived = listReceiver.listItems[indexPath.row]
+        cell.item        = itemReceived
 
         return cell
     } //: CELL CONFIG
