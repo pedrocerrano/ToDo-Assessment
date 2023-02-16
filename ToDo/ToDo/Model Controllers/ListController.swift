@@ -25,7 +25,9 @@ class ListController {
     } //: CREATE
     
     
-    func deleteList() {
+    func deleteList(listToDelete: List) {
+        guard let listIndex = lists.firstIndex(of: listToDelete) else { return }
+        lists.remove(at: listIndex)
         
         saveLists()
     } //: DELETE

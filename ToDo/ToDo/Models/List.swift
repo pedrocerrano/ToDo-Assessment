@@ -21,3 +21,10 @@ class List: Codable {
     }
     
 } //: CLASS
+
+
+extension List: Equatable {
+    static func == (lhs: List, rhs: List) -> Bool {
+        return lhs.id == rhs.id
+    }
+} //: EXTENSION

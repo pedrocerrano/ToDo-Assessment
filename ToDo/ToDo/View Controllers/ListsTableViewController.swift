@@ -21,7 +21,9 @@ class ListsTableViewController: UITableViewController {
     
     //MARK: - ACTIONS
     @IBAction func createListButtonTapped(_ sender: Any) {
-        
+        guard let newListName = listNameTextField.text else { return }
+        ListController.sharedInstance.createList(name: newListName)
+        tableView.reloadData()
     } //: CREATE LIST TAPPED
     
     
@@ -43,7 +45,8 @@ class ListsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            let deleteList = ListController.sharedInstance.lists[indexPath.row]
+            ListController.sharedInstance.deleteList(listToDelete: deleteList)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } //: DELETE
     } //: EDIT STYLE
