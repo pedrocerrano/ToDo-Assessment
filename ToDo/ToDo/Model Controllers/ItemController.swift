@@ -18,7 +18,9 @@ class ItemController {
     } //: CREATE
     
     
-    func deleteItem() {
+    static func deleteItem(itemToDelete: Item, from list: List) {
+        guard let itemIndex = list.listItems.firstIndex(of: itemToDelete) else { return }
+        list.listItems.remove(at: itemIndex)
         
         ListController.sharedInstance.saveLists()
     } //: DELETE

@@ -17,11 +17,17 @@ class ListsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     } //: DidLOAD
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
 
     
     //MARK: - ACTIONS
     @IBAction func createListButtonTapped(_ sender: Any) {
-        guard let newListName = listNameTextField.text else { return }
+        guard let newListName = listNameTextField.text, !newListName.isEmpty else { return }
         ListController.sharedInstance.createList(name: newListName)
         tableView.reloadData()
     } //: CREATE LIST TAPPED

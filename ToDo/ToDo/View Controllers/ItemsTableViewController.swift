@@ -38,8 +38,12 @@ class ItemsTableViewController: UITableViewController {
     
     //MARK: - ACTIONS
     @IBAction func addItemButtonTapped(_ sender: Any) {
-        
+        guard let listReceiver = listReceiver,
+              let newItemName = itemNameTextField.text, !newItemName.isEmpty else { return }
+        ItemController.createItem(newItemName: newItemName, lists: listReceiver)
+        tableView.reloadData()
     } //: ADD ITEM TAPPED
+// Need to clear textfield when tapping Add
     
     
     //MARK: - HELPER FUNCTIONS
@@ -68,7 +72,9 @@ class ItemsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            guard let listReceiver = listReceiver else { return }
+            let deleteThisItem = listReceiver.listItems[indexPath.row]
+            ItemController.deleteItem(itemToDelete: deleteThisItem, from: listReceiver)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } //: DELETE
     } //: EDIT STYLE
