@@ -20,7 +20,7 @@ class ListsTableViewCell: UITableViewCell {
     
     
     //MARK: - HELPER FUNCTIONS
-    func updateViews(list: List) {
+    func updateListCellViews(list: List) {
         listNameLabel.text  = list.listName
         itemCountLabel.text = "\(list.listItems.count)"
         

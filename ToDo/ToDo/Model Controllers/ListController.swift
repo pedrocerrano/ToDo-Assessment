@@ -45,7 +45,7 @@ class ListController {
             let data = try JSONEncoder().encode(lists)
             try data.write(to: url)
         } catch {
-            print("Error Saving Lists", error.localizedDescription)
+            print("Error Saving Lists:", error.localizedDescription)
         } //: DO-CATCH
     } //: SAVE
     
@@ -57,7 +57,7 @@ class ListController {
             let decodedLists  = try JSONDecoder().decode([List].self, from: retreivedData)
             self.lists        = decodedLists
         } catch {
-            print("Error Loading Lists", error.localizedDescription)
+            print("Error Loading Lists:", error.localizedDescription)
         } //: DO-CATCH
     } //: LOAD
     

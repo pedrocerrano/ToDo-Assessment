@@ -1,5 +1,5 @@
 //
-//  ListsTableViewController.swift
+//  ItemsTableViewController.swift
 //  ToDo
 //
 //  Created by iMac Pro on 2/15/23.
@@ -7,36 +7,57 @@
 
 import UIKit
 
-class ListsTableViewController: UITableViewController {
+class ItemsTableViewController: UITableViewController {
 
     //MARK: - OUTLETS
-    @IBOutlet weak var listNameTextField: UITextField!
+    @IBOutlet weak var itemNameTextField: UITextField!
+    
+    
+    //MARK: - PROPERTIES
+    var listReceiver: List?
     
     
     //MARK: - LIFECYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateViews()
     } //: DidLOAD
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateViews()
+    } //: WillAPPEAR
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+// Set remove checked items here
+    } //: WillDISAPPEAR
 
     
     //MARK: - ACTIONS
-    @IBAction func createListButtonTapped(_ sender: Any) {
+    @IBAction func addItemButtonTapped(_ sender: Any) {
         
-    } //: CREATE LIST TAPPED
+    } //: ADD ITEM TAPPED
+    
+    
+    //MARK: - HELPER FUNCTIONS
+    func updateViews() {
+        
+    } //: UPDATE VIEWS
     
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ListController.sharedInstance.lists.count
-    } //: #ROWS
+        return 0
+    } //: # ROWS
 
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "listCell", for: indexPath) as? ListsTableViewCell else { return UITableViewCell() }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath)
 
-        let listIndex = ListController.sharedInstance.lists[indexPath.row]
-        cell.updateListCellViews(list: listIndex)
-        
+
         return cell
     } //: CELL CONFIG
 
@@ -47,11 +68,5 @@ class ListsTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         } //: DELETE
     } //: EDIT STYLE
-
-
-    // MARK: - NAVIGATION
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-    } //: SEGUE
 
 } //: CLASS
