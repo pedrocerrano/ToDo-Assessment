@@ -7,16 +7,21 @@
 
 import UIKit
 
+protocol ListTableViewCellDelegate: AnyObject {
+    func toggleIsCompletedButtonWasTapped(cell: ListsTableViewCell)
+} //: DELEGATE
+
+
 class ListsTableViewCell: UITableViewCell {
 
     //MARK: - OUTLETS
     @IBOutlet weak var listNameLabel: UILabel!
     @IBOutlet weak var itemCountLabel: UILabel!
-    @IBOutlet weak var isCheckedButton: UIButton!
+    @IBOutlet weak var isCompletedButton: UIButton!
     
     
     //MARK: - PROPERTIES
-    
+    weak var delegate: ListTableViewCellDelegate?
     
     
     //MARK: - HELPER FUNCTIONS
@@ -25,13 +30,13 @@ class ListsTableViewCell: UITableViewCell {
         itemCountLabel.text = "\(list.listItems.count)"
         
         let image = list.listIsCompleted ? UIImage(systemName: "checkmark.diamond.fill") : UIImage(systemName: "checkmark.diamond")
-        isCheckedButton.setImage(image, for: .normal)
+        isCompletedButton.setImage(image, for: .normal)
     } //: UPDATE VIEWS
     
     
     //MARK: - ACTIONS
-    @IBAction func isCheckedButtonTapped(_ sender: Any) {
-        
+    @IBAction func isCompletedButtonTapped(_ sender: Any) {
+        delegate?.toggleIsCompletedButtonWasTapped(cell: self)
     } //: IS CHECKED TAPPED
 
 } //: CLASS

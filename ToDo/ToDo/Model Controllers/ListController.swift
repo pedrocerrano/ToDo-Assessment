@@ -16,7 +16,7 @@ class ListController {
         loadLists()
     }
     
-    //MARK: - CRUD FUNCTIONS
+    //MARK: - CRUD
     func createList(name: String, listItems: [Item] = []) {
         let newList = List(listName: name)
         lists.append(newList)
@@ -31,6 +31,13 @@ class ListController {
         
         saveLists()
     } //: DELETE
+    
+    
+    //MARK: - FUNCTIONS
+    func toggleListIsCompleted(list: List) {
+        list.listIsCompleted.toggle()
+        saveLists()
+    } //: TOGGLE isCompleted
     
     
     //MARK: - PERSISTENCE

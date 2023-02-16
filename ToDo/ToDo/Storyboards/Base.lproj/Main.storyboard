@@ -61,7 +61,7 @@
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="checkmark.diamond" catalog="system"/>
                                                     <connections>
-                                                        <action selector="isCheckedButtonTapped:" destination="L0x-hI-b0t" eventType="touchUpInside" id="Jcm-aL-1ux"/>
+                                                        <action selector="isCompletedButtonTapped:" destination="L0x-hI-b0t" eventType="touchUpInside" id="Rq3-M1-dYV"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="(list name)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FsU-fq-oJC">
@@ -87,7 +87,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="isCheckedButton" destination="vIP-6y-6ER" id="NBN-mO-UTm"/>
+                                    <outlet property="isCompletedButton" destination="vIP-6y-6ER" id="NBN-mO-UTm"/>
                                     <outlet property="itemCountLabel" destination="xg1-0j-GUn" id="yqE-FM-UYh"/>
                                     <outlet property="listNameLabel" destination="FsU-fq-oJC" id="tEQ-LN-H4E"/>
                                     <segue destination="0Ag-wn-ZYz" kind="show" identifier="toItemsTableVC" id="3Kw-aA-VpI"/>

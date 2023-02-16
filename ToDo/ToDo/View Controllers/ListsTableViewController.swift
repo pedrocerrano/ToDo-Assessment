@@ -27,10 +27,23 @@ class ListsTableViewController: UITableViewController {
     
     //MARK: - ACTIONS
     @IBAction func createListButtonTapped(_ sender: Any) {
-        guard let newListName = listNameTextField.text, !newListName.isEmpty else { return }
-        ListController.sharedInstance.createList(name: newListName)
+        guard let newListName = listNameTextField.text else { return }
+        if newListName.isEmpty {
+            presentEmptyTextFieldAlertController()
+        } else {
+            ListController.sharedInstance.createList(name: newListName)
+        }
         tableView.reloadData()
     } //: CREATE LIST TAPPED
+    
+    
+    //MARK: - FUNCTIONS
+    func presentEmptyTextFieldAlertController() {
+        let alertController = UIAlertController(title: "Empty TextField", message: "Please give the List a name.", preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(confirmAction)
+        present(alertController, animated: true)
+    }
     
     
     // MARK: - Table view data source
@@ -44,6 +57,7 @@ class ListsTableViewController: UITableViewController {
 
         let listIndex = ListController.sharedInstance.lists[indexPath.row]
         cell.updateListCellViews(list: listIndex)
+        cell.delegate = self
         
         return cell
     } //: CELL CONFIG
@@ -69,5 +83,15 @@ class ListsTableViewController: UITableViewController {
             } //: INDEX
         } //: IDENTIFIER
     } //: SEGUE
-
 } //: CLASS
+
+
+//MARK: - EXTENSION ListTableViewCellDelegate
+extension ListsTableViewController: ListTableViewCellDelegate {
+    func toggleIsCompletedButtonWasTapped(cell: ListsTableViewCell) {
+        guard let listCellIndex = tableView.indexPath(for: cell) else { return }
+        let list = ListController.sharedInstance.lists[listCellIndex.row]
+        ListController.sharedInstance.toggleListIsCompleted(list: list)
+        cell.updateListCellViews(list: list)
+    } //: IMPLEMENTATION
+} //: EXTENSION
