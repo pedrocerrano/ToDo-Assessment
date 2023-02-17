@@ -7,11 +7,15 @@
 
 import UIKit
 
+protocol ItemTableViewCellDelegate: AnyObject {
+    func toggleItemIsCompletedButtonWasTapped(cell: ItemsTableViewCell)
+} //: PROTOCOL
+
 class ItemsTableViewCell: UITableViewCell {
 
     //MARK: - OUTLETS
     @IBOutlet weak var itemNameLabel: UILabel!
-    @IBOutlet weak var itemIsCheckedButton: UIButton!
+    @IBOutlet weak var itemIsCompletedButton: UIButton!
     
     
     //MARK: - PROPERTIES
@@ -20,6 +24,7 @@ class ItemsTableViewCell: UITableViewCell {
             updateItemCellViews()
         } //: PROPERTY OBSERVER
     } //: COMPUTED
+    weak var delegate: ItemTableViewCellDelegate?
     
     
     //MARK: - HELPER FUNCTIONS
@@ -29,13 +34,13 @@ class ItemsTableViewCell: UITableViewCell {
         
         let imageName   = item.itemIsCompleted ? "checkmark.square.fill" : "checkmark.square"
         let image       = UIImage(systemName: imageName)
-        itemIsCheckedButton.setImage(image, for: .normal)
+        itemIsCompletedButton.setImage(image, for: .normal)
     } //: UPDATE ITEMS VIEWS
     
     
     //MARK: - ACTIONS
-    @IBAction func itemIsCheckedButtonTapped(_ sender: Any) {
-        
-    } //: BUTTON CHECKED
+    @IBAction func itemIsCompletedButtonTapped(_ sender: Any) {
+        delegate?.toggleItemIsCompletedButtonWasTapped(cell: self)
+    } //: IsCompleted TAPPED
 
 } //: CLASS

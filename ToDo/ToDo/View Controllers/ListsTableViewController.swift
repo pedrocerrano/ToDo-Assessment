@@ -29,7 +29,7 @@ class ListsTableViewController: UITableViewController {
     @IBAction func createListButtonTapped(_ sender: Any) {
         guard let newListName = listNameTextField.text else { return }
         if newListName.isEmpty {
-            presentEmptyTextFieldAlertController()
+            presentUnnamedListAlertController()
         } else {
             ListController.sharedInstance.createList(name: newListName)
         }
@@ -38,7 +38,7 @@ class ListsTableViewController: UITableViewController {
     
     
     //MARK: - FUNCTIONS
-    func presentEmptyTextFieldAlertController() {
+    private func presentUnnamedListAlertController() {
         let alertController = UIAlertController(title: "Empty TextField", message: "Please give the List a name.", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(confirmAction)
@@ -60,7 +60,7 @@ class ListsTableViewController: UITableViewController {
         cell.delegate = self
         
         return cell
-    } //: CELL CONFIG
+    } //: listCell CONFIG
 
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -82,7 +82,7 @@ class ListsTableViewController: UITableViewController {
                 } //: DESTINATION
             } //: INDEX
         } //: IDENTIFIER
-    } //: SEGUE
+    } //: SEGUE toItemsTableVC
 } //: CLASS
 
 

@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //MARK: - MOCK DATA
 //        let list1 = List(listName: "Grocery Shop", listItems: [Item(itemName: "Buy Egss"), Item(itemName: "Buy Milk"), Item(itemName: "Buy Bread")])
-//        let list2 = List(listName: "Make Dinner", listItems: [Item(itemName: "Cook Pizza")])
+//        let list2 = List(listName: "Make Dinner", listItems: [Item(itemName: "Order Pizza")])
 //        let list3 = List(listName: "Pack for Vatcation")
 //        
 //        ListController.sharedInstance.lists.append(contentsOf: [list1, list2, list3])

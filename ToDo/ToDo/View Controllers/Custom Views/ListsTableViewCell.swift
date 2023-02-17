@@ -9,7 +9,7 @@ import UIKit
 
 protocol ListTableViewCellDelegate: AnyObject {
     func toggleIsCompletedButtonWasTapped(cell: ListsTableViewCell)
-} //: DELEGATE
+} //: PROTOCOL
 
 
 class ListsTableViewCell: UITableViewCell {
@@ -37,6 +37,6 @@ class ListsTableViewCell: UITableViewCell {
     //MARK: - ACTIONS
     @IBAction func isCompletedButtonTapped(_ sender: Any) {
         delegate?.toggleIsCompletedButtonWasTapped(cell: self)
-    } //: IS CHECKED TAPPED
+    } //: IsCompleted TAPPED
 
 } //: CLASS
